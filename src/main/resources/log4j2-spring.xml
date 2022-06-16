@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Properties>
+        <Property name="artifact-name">@project.artifactId@</Property>
+        <Property name="env-name">${sys:spring.profiles.active:-undefined}</Property>
+        <Property name="app-name">SAMS-SPIRE-SLIP-FEEDER</Property>
+    </Properties>
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="[${app-name}] %d{ISO8601} %MDC [${env-name}] [%-5level] [%t:%c{1}:%M:%L] START: %msg :END %n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.samsclub.spire" level="info"
+                additivity="false">
+            <AppenderRef ref="STDOUT" level="info" />
+        </Logger>
+        <Logger name="org.springframework.web" level="info"
+                additivity="false">
+            <AppenderRef ref="STDOUT" level="info" />
+        </Logger>org.apache.kafka
+        <Logger name="org.apache.kafka" level="info"
+                additivity="false">
+            <AppenderRef ref="STDOUT" level="info" />
+        </Logger>
+        <Logger name="org.hibernate" level="info"
+                additivity="false">
+            <AppenderRef ref="STDOUT" level="info" />
+        </Logger>
+        <Logger name="org.springframework.kafka" level="error"
+                additivity="false">
+            <AppenderRef ref="STDOUT" level="error" />
+        </Logger>
+        <Root level="error">
+            <AppenderRef ref="STDOUT" level="info" />
+        </Root>
+    </Loggers>
+</Configuration>
